@@ -35,12 +35,12 @@ if (require.main === module) {
 
 def create_secrets(wallet: str):
     secret = """{"pk": "%s"}""" % (wallet)
-    with open(f"./secrets.json", "w") as file:
+    with open(f"./secrets.json", "w+") as file:
         file.writelines(secret)
 
 
 def create_send(to: str, amount: str) -> None:
-    with open(f"./sendETH.ts", "w") as file:
+    with open(f"./sendETH.ts", "w+") as file:
         file.writelines(sendTo(to, amount))
 
 
