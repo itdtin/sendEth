@@ -61,6 +61,6 @@ if __name__ == '__main__':
 
     args = read_args()
     create(args)
-    stream = os.popen('npx hardhat run sendEth.ts --network ethTestnet')
+    stream = os.popen('npx hardhat run sendETH.ts --network ethTestnet')
     output = stream.read()
     print(output)
