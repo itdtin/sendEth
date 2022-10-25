@@ -52,7 +52,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     create_secrets(args.wallet)
     create_send(args.addressTo, args.amount)
-#
-#     stream = os.popen('yarn hardhat deploy-zksync')
-#     output = stream.read()
-#     output
+
+    stream = os.popen('npx hardhat run sendEth.ts --network ethTestnet')
+    output = stream.read()
+    output
