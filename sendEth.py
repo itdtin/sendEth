@@ -18,6 +18,7 @@ export async function sendETH(_destinationAddress: string, _amount: BigNumberish
     to: _destinationAddress,
     value: _amount
   });
+  tx.wait()
   console.log("tx: ", tx)
 }
 
@@ -43,16 +44,23 @@ def create_send(to: str, amount: str) -> None:
         file.writelines(sendTo(to, amount))
 
 
-if __name__ == '__main__':
+def read_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-wallet", dest="wallet", required=True)
     parser.add_argument("-addressTo", dest="addressTo", required=True)
     parser.add_argument("-amount", dest="amount", required=True)
+    return parser.parse_args()
 
-    args = parser.parse_args()
+
+def create(args):
     create_secrets(args.wallet)
     create_send(args.addressTo, args.amount)
 
+
+if __name__ == '__main__':
+
+    args = read_args()
+    create(args)
     stream = os.popen('npx hardhat run sendEth.ts --network ethTestnet')
     output = stream.read()
-    output
+    print(output)
